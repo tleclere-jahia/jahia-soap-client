@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:osgi="http://www.eclipse.org/gemini/blueprint/schema/blueprint"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.eclipse.org/gemini/blueprint/schema/blueprint http://www.eclipse.org/gemini/blueprint/schema/blueprint/gemini-blueprint.xsd">
+
+    <bean id="marshallerFoAdvert" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="fr.lsr.jahia.ws.wsdl.foadvert"/>
+    </bean>
+    <bean id="marshallerLov" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="fr.lsr.jahia.ws.wsdl.lov"/>
+    </bean>
+    <bean id="securityInterceptor" class="fr.lsr.jahia.ws.SecurityInterceptor"/>
+    <bean id="foAdvertServiceClient" class="fr.lsr.jahia.ws.FoAdvertServiceClient">
+        <property name="defaultUri"
+                  value="https://api3.lumesse-talenthub.com/CareerPortal/SOAP/FoAdvert?api_key=yauwsvaqkvwdmxfat8488fyx"/>
+        <property name="marshaller" ref="marshallerFoAdvert"/>
+        <property name="unmarshaller" ref="marshallerFoAdvert"/>
+        <property name="interceptors" ref="securityInterceptor"/>
+    </bean>
+    <bean id="lovServiceClient" class="fr.lsr.jahia.ws.LovServiceClient">
+        <property name="defaultUri"
+                  value="https://api3.lumesse-talenthub.com/HRIS/SOAP/LOV?api_key=uj8p6vaqdzcequvqvcfqjkzf"/>
+        <property name="marshaller" ref="marshallerLov"/>
+        <property name="unmarshaller" ref="marshallerLov"/>
+        <property name="interceptors" ref="securityInterceptor"/>
+    </bean>
+    <bean id="lumesseService" class="fr.lsr.jahia.ws.LumesseService">
+        <property name="foAdvertServiceClient" ref="foAdvertServiceClient"/>
+        <property name="lovServiceClient" ref="lovServiceClient"/>
+    </bean>
+
+    <osgi:service interface="fr.lsr.jahia.ws.LumesseService">
+        <bean class="org.jahia.bundles.spring.bridge.CoreContextSpringBeanProxy">
+            <property name="target" ref="lumesseService"/>
+        </bean>
+    </osgi:service>
+</beans>

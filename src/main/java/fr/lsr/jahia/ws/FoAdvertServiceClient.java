@@ -1,13 +1,9 @@
 package fr.lsr.jahia.ws;
 
 import fr.lsr.jahia.ws.wsdl.foadvert.*;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import org.springframework.ws.client.support.interceptor.ClientInterceptor;
 
 import javax.xml.bind.JAXBElement;
 import java.util.Collections;
@@ -15,30 +11,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Component(service = FoAdvertServiceClient.class, immediate = true)
 public class FoAdvertServiceClient extends WebServiceGatewaySupport {
     private static final Logger logger = LoggerFactory.getLogger(FoAdvertServiceClient.class);
 
-    private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/CareerPortal/SOAP/FoAdvert?api_key=yauwsvaqkvwdmxfat8488fyx";
-    private static final String CONTEXT_PATH = "fr.lsr.jahia.ws.wsdl.foadvert";
     private static final int PAGE_SIZE = 100;
 
     private final ObjectFactory objectFactory;
-    private ClientInterceptor securityIntercepor;
-
-    @Reference
-    private void setSecurityIntercepor(ClientInterceptor securityIntercepor) {
-        this.securityIntercepor = securityIntercepor;
-    }
 
     public FoAdvertServiceClient() {
         super();
-        setDefaultUri(DEFAULT_URI);
-        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath(CONTEXT_PATH);
-        setMarshaller(marshaller);
-        setUnmarshaller(marshaller);
-        setInterceptors(new ClientInterceptor[]{securityIntercepor});
         this.objectFactory = new ObjectFactory();
     }
 

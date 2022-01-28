@@ -1,6 +1,5 @@
 package fr.lsr.jahia.ws;
 
-import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.WebServiceClientException;
@@ -10,7 +9,6 @@ import org.springframework.ws.soap.saaj.SaajSoapMessage;
 
 import javax.xml.soap.*;
 
-@Component(service = ClientInterceptor.class, immediate = true)
 public class SecurityInterceptor implements ClientInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(SecurityInterceptor.class);
 

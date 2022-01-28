@@ -6,8 +6,6 @@ import fr.lsr.jahia.ws.wsdl.foadvert.AdvertisementDto;
 import fr.lsr.jahia.ws.wsdl.foadvert.CountryCriterion;
 import fr.lsr.jahia.ws.wsdl.foadvert.LovWithActivatorsCriterion;
 import fr.lsr.jahia.ws.wsdl.lov.LovDescendantDto;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +16,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Component(service = LumesseService.class, immediate = true)
 public class LumesseService {
     private static final Logger logger = LoggerFactory.getLogger(LumesseService.class);
 
@@ -30,13 +27,11 @@ public class LumesseService {
         objectMapper = new ObjectMapper();
     }
 
-    @Reference
-    private void setFoAdvertServiceClient(FoAdvertServiceClient foAdvertServiceClient) {
+    public void setFoAdvertServiceClient(FoAdvertServiceClient foAdvertServiceClient) {
         this.foAdvertServiceClient = foAdvertServiceClient;
     }
 
-    @Reference
-    private void setLovServiceClient(LovServiceClient lovServiceClient) {
+    public void setLovServiceClient(LovServiceClient lovServiceClient) {
         this.lovServiceClient = lovServiceClient;
     }
 
