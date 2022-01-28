@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name='SearchAgentWebService' targetNamespace='http://ws.mrted.com/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://ws.mrted.com/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://ws.mrted.com/' version='1.0' xmlns:tns='http://ws.mrted.com/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='create' type='tns:create'/>
+   <xs:element name='createResponse' type='tns:createResponse'/>
+   <xs:element name='customLovGroup' type='tns:customLovGroup'/>
+   <xs:element name='delete' type='tns:delete'/>
+   <xs:element name='deleteResponse' type='tns:deleteResponse'/>
+   <xs:element name='getActiveSearchAgents' type='tns:getActiveSearchAgents'/>
+   <xs:element name='getActiveSearchAgentsResponse' type='tns:getActiveSearchAgentsResponse'/>
+   <xs:element name='searchAgentDetails' type='tns:searchAgentDetails'/>
+   <xs:element name='searchAgentDto' type='tns:searchAgentDto'/>
+   <xs:element name='searchcriteria' type='tns:searchCriteriaDto'/>
+   <xs:element name='update' type='tns:update'/>
+   <xs:element name='updateResponse' type='tns:updateResponse'/>
+   <xs:complexType name='delete'>
+    <xs:sequence>
+     <xs:element form='qualified' minOccurs='0' name='token' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='deleteResponse'>
+    <xs:sequence/>
+   </xs:complexType>
+   <xs:complexType name='create'>
+    <xs:sequence>
+     <xs:element minOccurs='0' ref='tns:searchAgentDto'/>
+     <xs:element form='qualified' name='sendEmail' type='xs:boolean'/>
+     <xs:element form='qualified' minOccurs='0' name='language' type='tns:langCode'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='searchAgentDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='deliveryFrequency' type='tns:deliveryFrequency'/>
+     <xs:element minOccurs='0' name='email' type='xs:string'/>
+     <xs:element minOccurs='0' name='expirationDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='searchCriteria' type='tns:searchCriteriaDto'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='searchCriteriaDto'>
+    <xs:sequence>
+     <xs:element name='adLanguages'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='language' type='xs:string'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element name='categoryLists'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='categoryList' type='tns:categoryNameDto'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element name='contractTypes'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='contractType' type='xs:long'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element name='countries'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='country' type='xs:long'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element name='customLovs'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' ref='tns:customLovGroup'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='generalApplication' type='xs:boolean'/>
+     <xs:element minOccurs='0' name='jobNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='keywords' type='xs:string'/>
+     <xs:element name='organizationIds'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='organizationId' type='xs:long'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='postedSince' type='xs:int'/>
+     <xs:element name='regions'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='region' type='xs:long'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element name='scheduleTypes'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='scheduleType' type='xs:long'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='categoryNameDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='categoryIds'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='categoryId' type='xs:long'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='order' type='xs:int'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='customLovGroup'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='customLov' type='xs:long'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='createResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='update'>
+    <xs:sequence>
+     <xs:element minOccurs='0' ref='tns:searchAgentDto'/>
+     <xs:element form='qualified' minOccurs='0' name='token' type='xs:string'/>
+     <xs:element form='qualified' minOccurs='0' name='language' type='tns:langCode'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='updateResponse'>
+    <xs:sequence/>
+   </xs:complexType>
+   <xs:complexType name='getActiveSearchAgents'>
+    <xs:sequence>
+     <xs:element form='qualified' minOccurs='0' name='token' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getActiveSearchAgentsResponse'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' ref='tns:searchAgentDetails'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='searchAgentDetails'>
+    <xs:complexContent>
+     <xs:extension base='tns:searchAgentDto'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='id' type='xs:long'/>
+       <xs:element minOccurs='0' name='token' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:simpleType name='deliveryFrequency'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='ONCE_A_DAY'/>
+     <xs:enumeration value='ONCE_A_WEEK'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='langCode'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='XX'/>
+     <xs:enumeration value='AR'/>
+     <xs:enumeration value='BG'/>
+     <xs:enumeration value='BR'/>
+     <xs:enumeration value='CH'/>
+     <xs:enumeration value='CN'/>
+     <xs:enumeration value='CS'/>
+     <xs:enumeration value='CY'/>
+     <xs:enumeration value='DE'/>
+     <xs:enumeration value='DN'/>
+     <xs:enumeration value='EL'/>
+     <xs:enumeration value='US'/>
+     <xs:enumeration value='EN'/>
+     <xs:enumeration value='ET'/>
+     <xs:enumeration value='FL'/>
+     <xs:enumeration value='FN'/>
+     <xs:enumeration value='FR'/>
+     <xs:enumeration value='GL'/>
+     <xs:enumeration value='HR'/>
+     <xs:enumeration value='HU'/>
+     <xs:enumeration value='IS'/>
+     <xs:enumeration value='IT'/>
+     <xs:enumeration value='JA'/>
+     <xs:enumeration value='KO'/>
+     <xs:enumeration value='LT'/>
+     <xs:enumeration value='LV'/>
+     <xs:enumeration value='MY'/>
+     <xs:enumeration value='NL'/>
+     <xs:enumeration value='NW'/>
+     <xs:enumeration value='PL'/>
+     <xs:enumeration value='PT'/>
+     <xs:enumeration value='RO'/>
+     <xs:enumeration value='RU'/>
+     <xs:enumeration value='SK'/>
+     <xs:enumeration value='SL'/>
+     <xs:enumeration value='SP'/>
+     <xs:enumeration value='SR'/>
+     <xs:enumeration value='SW'/>
+     <xs:enumeration value='TH'/>
+     <xs:enumeration value='TR'/>
+     <xs:enumeration value='TW'/>
+     <xs:enumeration value='UA'/>
+     <xs:enumeration value='UK'/>
+     <xs:enumeration value='VI'/>
+     <xs:enumeration value='ID'/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:schema>
+ </types>
+ <message name='SearchAgentWebService_delete'>
+  <part element='tns:delete' name='delete'></part>
+ </message>
+ <message name='SearchAgentWebService_getActiveSearchAgentsResponse'>
+  <part element='tns:getActiveSearchAgentsResponse' name='getActiveSearchAgentsResponse'></part>
+ </message>
+ <message name='SearchAgentWebService_create'>
+  <part element='tns:create' name='create'></part>
+ </message>
+ <message name='SearchAgentWebService_deleteResponse'>
+  <part element='tns:deleteResponse' name='deleteResponse'></part>
+ </message>
+ <message name='SearchAgentWebService_getActiveSearchAgents'>
+  <part element='tns:getActiveSearchAgents' name='getActiveSearchAgents'></part>
+ </message>
+ <message name='SearchAgentWebService_createResponse'>
+  <part element='tns:createResponse' name='createResponse'></part>
+ </message>
+ <message name='SearchAgentWebService_updateResponse'>
+  <part element='tns:updateResponse' name='updateResponse'></part>
+ </message>
+ <message name='SearchAgentWebService_update'>
+  <part element='tns:update' name='update'></part>
+ </message>
+ <portType name='SearchAgentWebService'>
+  <operation name='create' parameterOrder='create'>
+   <input message='tns:SearchAgentWebService_create'></input>
+   <output message='tns:SearchAgentWebService_createResponse'></output>
+  </operation>
+  <operation name='delete' parameterOrder='delete'>
+   <input message='tns:SearchAgentWebService_delete'></input>
+   <output message='tns:SearchAgentWebService_deleteResponse'></output>
+  </operation>
+  <operation name='getActiveSearchAgents' parameterOrder='getActiveSearchAgents'>
+   <input message='tns:SearchAgentWebService_getActiveSearchAgents'></input>
+   <output message='tns:SearchAgentWebService_getActiveSearchAgentsResponse'></output>
+  </operation>
+  <operation name='update' parameterOrder='update'>
+   <input message='tns:SearchAgentWebService_update'></input>
+   <output message='tns:SearchAgentWebService_updateResponse'></output>
+  </operation>
+ </portType>
+ <binding name='SearchAgentWebServiceBinding' type='tns:SearchAgentWebService'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='create'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='delete'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='getActiveSearchAgents'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='update'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='SearchAgentWebService'>
+  <port binding='tns:SearchAgentWebServiceBinding' name='SearchAgentWebServicePort'>
+   <soap:address location='https://api3.lumesse-talenthub.com/CareerPortal/SOAP/SearchAgent?api_key=yauwsvaqkvwdmxfat8488fyx'/>
+  </port>
+ </service>
+</definitions>

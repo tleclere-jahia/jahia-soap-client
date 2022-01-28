@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name='LovWebService' targetNamespace='http://ws.mrted.com/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://ws.mrted.com/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://ws.mrted.com/' version='1.0' xmlns:tns='http://ws.mrted.com/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='getLovNames' type='tns:getLovNames'/>
+   <xs:element name='getLovNamesResponse' type='tns:getLovNamesResponse'/>
+   <xs:element name='getLovWithValuesByName' type='tns:getLovWithValuesByName'/>
+   <xs:element name='getLovWithValuesByNameResponse' type='tns:getLovWithValuesByNameResponse'/>
+   <xs:element name='getLovsWithValues' type='tns:getLovsWithValues'/>
+   <xs:element name='getLovsWithValuesResponse' type='tns:getLovsWithValuesResponse'/>
+   <xs:element name='lov' type='tns:lovDto'/>
+   <xs:element name='lovDescendant' type='tns:lovDescendantDto'/>
+   <xs:complexType name='getLovWithValuesByName'>
+    <xs:sequence>
+     <xs:element form='qualified' minOccurs='0' name='lovName' type='xs:string'/>
+     <xs:element form='qualified' minOccurs='0' name='langCode' type='tns:langCode'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getLovWithValuesByNameResponse'>
+    <xs:sequence>
+     <xs:element form='qualified' maxOccurs='unbounded' minOccurs='0' name='lovWithValues' type='tns:lovDescendantDto'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='lovDescendantDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='dataFormat' type='xs:string'/>
+     <xs:element minOccurs='0' name='dataType' type='tns:dataType'/>
+     <xs:element minOccurs='0' name='dataValue' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='lovId' type='xs:long'/>
+     <xs:element minOccurs='0' name='lovName' type='xs:string'/>
+     <xs:element minOccurs='0' name='lovValue' type='xs:string'/>
+     <xs:element minOccurs='0' name='translation' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getLovsWithValues'>
+    <xs:sequence>
+     <xs:element form='qualified' maxOccurs='unbounded' minOccurs='0' name='lovNames' type='xs:string'/>
+     <xs:element form='qualified' minOccurs='0' name='langCode' type='tns:langCode'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getLovsWithValuesResponse'>
+    <xs:sequence>
+     <xs:element form='qualified' maxOccurs='unbounded' minOccurs='0' name='lovWithValues' type='tns:lovDto'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='lovDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='lovName' type='xs:string'/>
+     <xs:element minOccurs='0' name='lovId' type='xs:long'/>
+     <xs:element minOccurs='0' name='order' type='xs:int'/>
+     <xs:element minOccurs='0' name='lovChildren'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='lovChild' type='tns:lovDescendantDto'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getLovNames'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='lovTypeCategory' type='tns:lovTypeCategory'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getLovNamesResponse'>
+    <xs:sequence>
+     <xs:element form='qualified' maxOccurs='unbounded' minOccurs='0' name='lovNames' type='tns:lovDto'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name='langCode'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='XX'/>
+     <xs:enumeration value='AR'/>
+     <xs:enumeration value='BG'/>
+     <xs:enumeration value='BR'/>
+     <xs:enumeration value='CH'/>
+     <xs:enumeration value='CN'/>
+     <xs:enumeration value='CS'/>
+     <xs:enumeration value='CY'/>
+     <xs:enumeration value='DE'/>
+     <xs:enumeration value='DN'/>
+     <xs:enumeration value='EL'/>
+     <xs:enumeration value='US'/>
+     <xs:enumeration value='EN'/>
+     <xs:enumeration value='ET'/>
+     <xs:enumeration value='FL'/>
+     <xs:enumeration value='FN'/>
+     <xs:enumeration value='FR'/>
+     <xs:enumeration value='GL'/>
+     <xs:enumeration value='HR'/>
+     <xs:enumeration value='HU'/>
+     <xs:enumeration value='IS'/>
+     <xs:enumeration value='IT'/>
+     <xs:enumeration value='JA'/>
+     <xs:enumeration value='KO'/>
+     <xs:enumeration value='LT'/>
+     <xs:enumeration value='LV'/>
+     <xs:enumeration value='MY'/>
+     <xs:enumeration value='NL'/>
+     <xs:enumeration value='NW'/>
+     <xs:enumeration value='PL'/>
+     <xs:enumeration value='PT'/>
+     <xs:enumeration value='RO'/>
+     <xs:enumeration value='RU'/>
+     <xs:enumeration value='SK'/>
+     <xs:enumeration value='SL'/>
+     <xs:enumeration value='SP'/>
+     <xs:enumeration value='SR'/>
+     <xs:enumeration value='SW'/>
+     <xs:enumeration value='TH'/>
+     <xs:enumeration value='TR'/>
+     <xs:enumeration value='TW'/>
+     <xs:enumeration value='UA'/>
+     <xs:enumeration value='UK'/>
+     <xs:enumeration value='VI'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='dataType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='INTEGER'/>
+     <xs:enumeration value='TEXT'/>
+     <xs:enumeration value='POSITIVE_INTEGER'/>
+     <xs:enumeration value='NUMERICAL'/>
+     <xs:enumeration value='BOOLEAN'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='lovTypeCategory'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='SYSTEMFIXED'/>
+     <xs:enumeration value='SYSTEMCONFIGURABLE'/>
+     <xs:enumeration value='CONFIGURABLE'/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:schema>
+ </types>
+ <message name='LovWebService_getLovWithValuesByName'>
+  <part element='tns:getLovWithValuesByName' name='getLovWithValuesByName'></part>
+ </message>
+ <message name='LovWebService_getLovsWithValuesResponse'>
+  <part element='tns:getLovsWithValuesResponse' name='getLovsWithValuesResponse'></part>
+ </message>
+ <message name='LovWebService_getLovWithValuesByNameResponse'>
+  <part element='tns:getLovWithValuesByNameResponse' name='getLovWithValuesByNameResponse'></part>
+ </message>
+ <message name='LovWebService_getLovsWithValues'>
+  <part element='tns:getLovsWithValues' name='getLovsWithValues'></part>
+ </message>
+ <message name='LovWebService_getLovNames'>
+  <part element='tns:getLovNames' name='getLovNames'></part>
+ </message>
+ <message name='LovWebService_getLovNamesResponse'>
+  <part element='tns:getLovNamesResponse' name='getLovNamesResponse'></part>
+ </message>
+ <portType name='LovWebService'>
+  <operation name='getLovNames' parameterOrder='getLovNames'>
+   <input message='tns:LovWebService_getLovNames'></input>
+   <output message='tns:LovWebService_getLovNamesResponse'></output>
+  </operation>
+  <operation name='getLovWithValuesByName' parameterOrder='getLovWithValuesByName'>
+   <input message='tns:LovWebService_getLovWithValuesByName'></input>
+   <output message='tns:LovWebService_getLovWithValuesByNameResponse'></output>
+  </operation>
+  <operation name='getLovsWithValues' parameterOrder='getLovsWithValues'>
+   <input message='tns:LovWebService_getLovsWithValues'></input>
+   <output message='tns:LovWebService_getLovsWithValuesResponse'></output>
+  </operation>
+ </portType>
+ <binding name='LovWebServiceBinding' type='tns:LovWebService'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='getLovNames'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='getLovWithValuesByName'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='getLovsWithValues'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='LovWebService'>
+  <port binding='tns:LovWebServiceBinding' name='LovWebServicePort'>
+   <soap:address location='https://api3.lumesse-talenthub.com/HRIS/SOAP/LOV?api_key=uj8p6vaqdzcequvqvcfqjkzf'/>
+  </port>
+ </service>
+</definitions>
