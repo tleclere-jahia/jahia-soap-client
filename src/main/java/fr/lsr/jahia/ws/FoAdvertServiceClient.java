@@ -20,7 +20,7 @@ public class FoAdvertServiceClient extends WebServiceGatewaySupport {
 
     public FoAdvertServiceClient() {
         super();
-        this.objectFactory = new ObjectFactory();
+        objectFactory = new ObjectFactory();
     }
 
     public int countAdvertisements() {

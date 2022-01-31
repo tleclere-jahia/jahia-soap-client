@@ -11,7 +11,10 @@
     <bean id="marshallerLov" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="contextPath" value="fr.lsr.jahia.ws.wsdl.lov"/>
     </bean>
-    <bean id="securityInterceptor" class="fr.lsr.jahia.ws.SecurityInterceptor"/>
+    <bean id="securityInterceptor" class="fr.lsr.jahia.ws.SecurityInterceptor">
+        <property name="username" value="QMOFK026203F3VBQB8MLO8MJ3:guest:FO"/>
+        <property name="password" value="guest"/>
+    </bean>
     <bean id="foAdvertServiceClient" class="fr.lsr.jahia.ws.FoAdvertServiceClient">
         <property name="defaultUri"
                   value="https://api3.lumesse-talenthub.com/CareerPortal/SOAP/FoAdvert?api_key=yauwsvaqkvwdmxfat8488fyx"/>
