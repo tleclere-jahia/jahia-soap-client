@@ -3,21 +3,19 @@ package fr.lsr.jahia.ws;
 import fr.lsr.jahia.ws.wsdl.lov.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 import javax.xml.bind.JAXBElement;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LovServiceClient extends WebServiceGatewaySupport {
+public class LovServiceClient extends AbstractWebServiceClient<ObjectFactory> {
     private static final Logger logger = LoggerFactory.getLogger(LovServiceClient.class);
 
-    private final ObjectFactory objectFactory;
+    private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/HRIS/SOAP/LOV?api_key=uj8p6vaqdzcequvqvcfqjkzf";
 
-    public LovServiceClient() {
-        super();
-        objectFactory = new ObjectFactory();
+    public LovServiceClient(SecurityInterceptor securityInterceptor) {
+        super(new ObjectFactory(), securityInterceptor, DEFAULT_URI);
     }
 
     private Set<LovDescendantDto> getLov(String lov) {
@@ -26,7 +24,7 @@ public class LovServiceClient extends WebServiceGatewaySupport {
         request.setLovName(lov);
 
         JAXBElement<GetLovWithValuesByNameResponse> responseWrapper = (JAXBElement<GetLovWithValuesByNameResponse>) getWebServiceTemplate()
-                .marshalSendAndReceive(objectFactory.createGetLovWithValuesByName(request));
+                .marshalSendAndReceive(getObjectFactory().createGetLovWithValuesByName(request));
         GetLovWithValuesByNameResponse response = responseWrapper.getValue();
         return Collections.unmodifiableSet(new HashSet<>(response.getLovWithValues()));
     }

@@ -6,6 +6,8 @@ import fr.lsr.jahia.ws.wsdl.foadvert.AdvertisementDto;
 import fr.lsr.jahia.ws.wsdl.foadvert.CountryCriterion;
 import fr.lsr.jahia.ws.wsdl.foadvert.LovWithActivatorsCriterion;
 import fr.lsr.jahia.ws.wsdl.lov.LovDescendantDto;
+import org.jahia.utils.ClassLoaderUtils;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,23 +18,20 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Component(service = LumesseService.class, immediate = true)
 public class LumesseService {
     private static final Logger logger = LoggerFactory.getLogger(LumesseService.class);
 
-    private FoAdvertServiceClient foAdvertServiceClient;
-    private LovServiceClient lovServiceClient;
     private final ObjectMapper objectMapper;
+    private final SecurityInterceptor securityInterceptor;
+    private final FoAdvertServiceClient foAdvertServiceClient;
+    private final LovServiceClient lovServiceClient;
 
     public LumesseService() {
         objectMapper = new ObjectMapper();
-    }
-
-    public void setFoAdvertServiceClient(FoAdvertServiceClient foAdvertServiceClient) {
-        this.foAdvertServiceClient = foAdvertServiceClient;
-    }
-
-    public void setLovServiceClient(LovServiceClient lovServiceClient) {
-        this.lovServiceClient = lovServiceClient;
+        securityInterceptor = new SecurityInterceptor();
+        foAdvertServiceClient = ClassLoaderUtils.executeWith(LumesseService.class.getClassLoader(), () -> new FoAdvertServiceClient(securityInterceptor));
+        lovServiceClient = ClassLoaderUtils.executeWith(LumesseService.class.getClassLoader(), () -> new LovServiceClient(securityInterceptor));
     }
 
     public int countAdvertisements() {

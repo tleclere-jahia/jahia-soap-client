@@ -3,7 +3,6 @@ package fr.lsr.jahia.ws;
 import fr.lsr.jahia.ws.wsdl.foadvert.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 import javax.xml.bind.JAXBElement;
 import java.util.Collections;
@@ -11,16 +10,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FoAdvertServiceClient extends WebServiceGatewaySupport {
+public class FoAdvertServiceClient extends AbstractWebServiceClient<ObjectFactory> {
     private static final Logger logger = LoggerFactory.getLogger(FoAdvertServiceClient.class);
 
+    private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/CareerPortal/SOAP/FoAdvert?api_key=yauwsvaqkvwdmxfat8488fyx";
     private static final int PAGE_SIZE = 100;
 
-    private final ObjectFactory objectFactory;
-
-    public FoAdvertServiceClient() {
-        super();
-        objectFactory = new ObjectFactory();
+    public FoAdvertServiceClient(SecurityInterceptor securityInterceptor) {
+        super(new ObjectFactory(), securityInterceptor, DEFAULT_URI);
     }
 
     public int countAdvertisements() {
@@ -32,7 +29,7 @@ public class FoAdvertServiceClient extends WebServiceGatewaySupport {
         request.setLangCode(LangCode.FR);
 
         JAXBElement<GetAdvertisementsResponse> responseWrapper = (JAXBElement<GetAdvertisementsResponse>) getWebServiceTemplate()
-                .marshalSendAndReceive(objectFactory.createGetAdvertisements(request));
+                .marshalSendAndReceive(getObjectFactory().createGetAdvertisements(request));
         GetAdvertisementsResponse response = responseWrapper.getValue();
         return response.getAdvertisementResult().getTotalResults();
     }
@@ -49,7 +46,7 @@ public class FoAdvertServiceClient extends WebServiceGatewaySupport {
         request.setLangCode(LangCode.FR);
 
         JAXBElement<GetAdvertisementsResponse> responseWrapper = (JAXBElement<GetAdvertisementsResponse>) getWebServiceTemplate()
-                .marshalSendAndReceive(objectFactory.createGetAdvertisements(request));
+                .marshalSendAndReceive(getObjectFactory().createGetAdvertisements(request));
         GetAdvertisementsResponse response = responseWrapper.getValue();
         return Collections.unmodifiableSet(new HashSet<>(response.getAdvertisementResult().getAdvertisements().getAdvertisement()));
     }
@@ -61,7 +58,7 @@ public class FoAdvertServiceClient extends WebServiceGatewaySupport {
         request.setShowImages(null);
 
         JAXBElement<GetAdvertisementByIdResponse> responseWrapper = (JAXBElement<GetAdvertisementByIdResponse>) getWebServiceTemplate()
-                .marshalSendAndReceive(objectFactory.createGetAdvertisementById(request));
+                .marshalSendAndReceive(getObjectFactory().createGetAdvertisementById(request));
         GetAdvertisementByIdResponse response = responseWrapper.getValue();
         return response.getAdvertisement();
     }
@@ -73,7 +70,7 @@ public class FoAdvertServiceClient extends WebServiceGatewaySupport {
         request.setSearchCriteriaSorting(null);
 
         JAXBElement<GetCriteriaResponse> responseWrapper = (JAXBElement<GetCriteriaResponse>) getWebServiceTemplate()
-                .marshalSendAndReceive(objectFactory.createGetCriteria(request));
+                .marshalSendAndReceive(getObjectFactory().createGetCriteria(request));
         GetCriteriaResponse response = responseWrapper.getValue();
         return response.getStandardCriteriaWithLovs();
     }

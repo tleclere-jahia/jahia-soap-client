@@ -12,16 +12,8 @@ import javax.xml.soap.*;
 public class SecurityInterceptor implements ClientInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(SecurityInterceptor.class);
 
-    private String username;
-    private String password;
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    private static final String USERNAME = "QMOFK026203F3VBQB8MLO8MJ3:guest:FO";
+    private static final String PASSWORD = "guest";
 
     @Override
     public boolean handleRequest(MessageContext messageContext) throws WebServiceClientException {
@@ -34,9 +26,9 @@ public class SecurityInterceptor implements ClientInterceptor {
             SOAPHeaderElement soapHeaderElement = soapHeader.addHeaderElement(headerElementName);
             SOAPElement usernameTokenSOAPElement = soapHeaderElement.addChildElement("UsernameToken", "wsse");
             SOAPElement userNameSOAPElement = usernameTokenSOAPElement.addChildElement("Username", "wsse");
-            userNameSOAPElement.addTextNode(username);
+            userNameSOAPElement.addTextNode(USERNAME);
             SOAPElement passwordSOAPElement = usernameTokenSOAPElement.addChildElement("Password", "wsse");
-            passwordSOAPElement.addTextNode(password);
+            passwordSOAPElement.addTextNode(PASSWORD);
             soapMessage.saveChanges();
             return true;
         } catch (SOAPException e) {
