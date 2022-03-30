@@ -189,7 +189,7 @@
                         </goals>
                         <configuration>
                             <schemaLanguage>WSDL</schemaLanguage>
-                            <generatePackage>fr.lsr.jahia.ws.wsdl.foadvert</generatePackage>
+                            <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.foadvert</generatePackage>
                             <schemas>
                                 <schema>
                                     <url>${project.basedir}/src/main/resources/wsdl/FoAdvert.xml</url>
@@ -204,7 +204,7 @@
                         </goals>
                         <configuration>
                             <schemaLanguage>WSDL</schemaLanguage>
-                            <generatePackage>fr.lsr.jahia.ws.wsdl.lov</generatePackage>
+                            <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.lov</generatePackage>
                             <schemas>
                                 <schema>
                                     <url>${project.basedir}/src/main/resources/wsdl/LOV.xml</url>
@@ -219,7 +219,7 @@
                         </goals>
                         <configuration>
                             <schemaLanguage>WSDL</schemaLanguage>
-                            <generatePackage>fr.lsr.jahia.ws.wsdl.searchagent</generatePackage>
+                            <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.searchagent</generatePackage>
                             <schemas>
                                 <schema>
                                     <url>${project.basedir}/src/main/resources/wsdl/SearchAgent.xml</url>

@@ -1,9 +1,9 @@
-package fr.lsr.jahia.ws;
+package org.foo.modules.jahia.lumesse.ws;
 
-import fr.lsr.jahia.ws.wsdl.foadvert.AdvertisementDto;
-import fr.lsr.jahia.ws.wsdl.foadvert.CustomField;
-import fr.lsr.jahia.ws.wsdl.foadvert.LovCriterion;
-import fr.lsr.jahia.ws.wsdl.foadvert.LovWithActivatorsCriterion;
+import org.foo.modules.jahia.lumesse.ws.wsdl.foadvert.AdvertisementDto;
+import org.foo.modules.jahia.lumesse.ws.wsdl.foadvert.CustomField;
+import org.foo.modules.jahia.lumesse.ws.wsdl.foadvert.LovCriterion;
+import org.foo.modules.jahia.lumesse.ws.wsdl.foadvert.LovWithActivatorsCriterion;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,20 +12,20 @@ import java.util.List;
 public class Advertisement {
     private String typeOrganisme;
     private String contractType;
-    private String city;
+    private final String city;
     private String organisme;
     private String niveau;
     private Date postingEndDate;
     private Date postingStartDate;
-    private String jobNumber;
+    private final String jobNumber;
     private String currency;
     private String compensationPeriod;
     private String compensation;
-    private String title;
-    private Long id;
+    private final String title;
+    private final Long id;
     private String metier;
     private List<CustomField> customFields;
-    private AdvertisementDto advertisementDto;
+    private final AdvertisementDto advertisementDto;
 
     public Advertisement(AdvertisementDto advertisementDto) {
         this.advertisementDto = advertisementDto;
@@ -102,45 +102,5 @@ public class Advertisement {
                 customFields = advertisementDto.getCustomFields().getCustomField();
             }
         }
-    }
-
-    public AdvertisementDto getAdvertisementDto() {
-        return advertisementDto;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getOrganisme() {
-        return organisme;
-    }
-
-    public String getContractType() {
-        return contractType;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getNiveau() {
-        return niveau;
-    }
-
-    public String getCompensation() {
-        return compensation;
-    }
-
-    public String getJobNumber() {
-        return jobNumber;
-    }
-
-    public List<CustomField> getCustomFields() {
-        return customFields;
     }
 }

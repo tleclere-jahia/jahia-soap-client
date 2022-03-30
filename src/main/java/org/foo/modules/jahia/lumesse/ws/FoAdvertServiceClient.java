@@ -1,6 +1,6 @@
-package fr.lsr.jahia.ws;
+package org.foo.modules.jahia.lumesse.ws;
 
-import fr.lsr.jahia.ws.wsdl.foadvert.*;
+import org.foo.modules.jahia.lumesse.ws.wsdl.foadvert.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,11 +13,14 @@ import java.util.Set;
 public class FoAdvertServiceClient extends AbstractWebServiceClient<ObjectFactory> {
     private static final Logger logger = LoggerFactory.getLogger(FoAdvertServiceClient.class);
 
-    private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/CareerPortal/SOAP/FoAdvert?api_key=yauwsvaqkvwdmxfat8488fyx";
-    private static final int PAGE_SIZE = 100;
+    private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/CareerPortal/SOAP/FoAdvert?api_key=%s";
+    private static final String SORTING_COLUMN = "posting_start_date";
 
-    public FoAdvertServiceClient(SecurityInterceptor securityInterceptor) {
-        super(new ObjectFactory(), securityInterceptor, DEFAULT_URI);
+    private final int pageSize;
+
+    public FoAdvertServiceClient(SecurityInterceptor securityInterceptor, String apiKey, int pageSize) {
+        super(new ObjectFactory(), securityInterceptor, String.format(DEFAULT_URI, apiKey));
+        this.pageSize = pageSize;
     }
 
     public int countAdvertisements() {
@@ -37,10 +40,10 @@ public class FoAdvertServiceClient extends AbstractWebServiceClient<ObjectFactor
     public Set<AdvertisementDto> getAdvertisements(int pageIndex) {
         GetAdvertisements request = new GetAdvertisements();
         request.setFirstResult(pageIndex);
-        request.setMaxResults(PAGE_SIZE);
+        request.setMaxResults(pageSize);
         request.setSearchCriteriaDto(new SearchCriteriaDto());
         SortingDetailsDto sortingDetailsDto = new SortingDetailsDto();
-        sortingDetailsDto.setColumnName(Constants.SORTING_COLUMN);
+        sortingDetailsDto.setColumnName(SORTING_COLUMN);
         sortingDetailsDto.setSortType(SortType.DESCENDING);
         request.setSortingDetailsDto(sortingDetailsDto);
         request.setLangCode(LangCode.FR);

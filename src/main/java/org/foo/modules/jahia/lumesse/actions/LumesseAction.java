@@ -1,6 +1,6 @@
-package fr.lsr.jahia.actions;
+package org.foo.modules.jahia.lumesse.actions;
 
-import fr.lsr.jahia.ws.LumesseService;
+import org.foo.modules.jahia.lumesse.ws.LumesseService;
 import org.jahia.bin.Action;
 import org.jahia.bin.ActionResult;
 import org.jahia.services.content.JCRSessionWrapper;

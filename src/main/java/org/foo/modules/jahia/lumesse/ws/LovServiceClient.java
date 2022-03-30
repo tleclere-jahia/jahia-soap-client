@@ -1,6 +1,6 @@
-package fr.lsr.jahia.ws;
+package org.foo.modules.jahia.lumesse.ws;
 
-import fr.lsr.jahia.ws.wsdl.lov.*;
+import org.foo.modules.jahia.lumesse.ws.wsdl.lov.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,10 +12,10 @@ import java.util.Set;
 public class LovServiceClient extends AbstractWebServiceClient<ObjectFactory> {
     private static final Logger logger = LoggerFactory.getLogger(LovServiceClient.class);
 
-    private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/HRIS/SOAP/LOV?api_key=uj8p6vaqdzcequvqvcfqjkzf";
+    private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/HRIS/SOAP/LOV?api_key=%s";
 
-    public LovServiceClient(SecurityInterceptor securityInterceptor) {
-        super(new ObjectFactory(), securityInterceptor, DEFAULT_URI);
+    public LovServiceClient(SecurityInterceptor securityInterceptor, String apiKey) {
+        super(new ObjectFactory(), securityInterceptor, String.format(DEFAULT_URI, apiKey));
     }
 
     private Set<LovDescendantDto> getLov(String lov) {

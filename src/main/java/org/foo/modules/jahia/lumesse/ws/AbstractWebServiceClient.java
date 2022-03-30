@@ -1,4 +1,4 @@
-package fr.lsr.jahia.ws;
+package org.foo.modules.jahia.lumesse.ws;
 
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
