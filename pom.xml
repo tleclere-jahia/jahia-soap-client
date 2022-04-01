@@ -52,7 +52,7 @@
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>8.1.0.0</version>
+        <version>8.0.3.1</version>
     </parent>
     <groupId>org.foo.jahia.modules</groupId>
     <artifactId>jahia-soap-client</artifactId>
@@ -61,11 +61,6 @@
     <packaging>bundle</packaging>
     <description>This is the custom module (jahia-soap-client) for running on a Digital Experience Manager server.
     </description>
-
-    <properties>
-        <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"
-        </require-capability>
-    </properties>
 
     <dependencies>
         <!-- Needed for SaajSoapMessage -->
@@ -192,7 +187,7 @@
                             <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.foadvert</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>${project.basedir}/src/main/resources/wsdl/FoAdvert.xml</url>
+                                    <url>./src/main/resources/wsdl/FoAdvert.xml</url>
                                 </schema>
                             </schemas>
                         </configuration>
@@ -207,7 +202,7 @@
                             <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.lov</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>${project.basedir}/src/main/resources/wsdl/LOV.xml</url>
+                                    <url>./src/main/resources/wsdl/LOV.xml</url>
                                 </schema>
                             </schemas>
                         </configuration>
@@ -222,7 +217,7 @@
                             <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.searchagent</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>${project.basedir}/src/main/resources/wsdl/SearchAgent.xml</url>
+                                    <url>./src/main/resources/wsdl/SearchAgent.xml</url>
                                 </schema>
                             </schemas>
                         </configuration>
