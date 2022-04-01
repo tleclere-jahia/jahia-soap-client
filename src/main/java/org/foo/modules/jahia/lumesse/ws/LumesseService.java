@@ -16,10 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component(service = LumesseService.class, immediate = true)
@@ -123,5 +120,9 @@ public class LumesseService {
         }
 
         logger.info("Cache Lumesse Job ended at {}", Instant.now().atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+    }
+
+    public List<String> getLovs() {
+        return lovServiceClient.getContractTypes().stream().map(LovDescendantDto::getLovName).collect(Collectors.toList());
     }
 }

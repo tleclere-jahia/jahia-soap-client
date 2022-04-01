@@ -40,6 +40,7 @@ public class LumesseAction extends Action {
         // Set<Advertisement> ads = lumesseService.getAllAdvertisements();
         // logger.info("Advertisements: {}", ads);
         // lumesseService.updateFromLumesse();
+        logger.info("{}", lumesseService.getLovs());
         return ActionResult.OK;
     }
 }
