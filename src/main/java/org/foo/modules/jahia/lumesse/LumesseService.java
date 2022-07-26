@@ -1,4 +1,4 @@
-package org.foo.modules.jahia.lumesse.ws;
+package org.foo.modules.jahia.lumesse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component(service = LumesseService.class, immediate = true)
+@Component(service = LumesseService.class)
 public class LumesseService {
     private static final Logger logger = LoggerFactory.getLogger(LumesseService.class);
 

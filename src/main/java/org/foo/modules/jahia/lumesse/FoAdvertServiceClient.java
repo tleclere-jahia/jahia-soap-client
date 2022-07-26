@@ -1,4 +1,4 @@
-package org.foo.modules.jahia.lumesse.ws;
+package org.foo.modules.jahia.lumesse;
 
 import org.foo.modules.jahia.lumesse.ws.wsdl.foadvert.*;
 import org.slf4j.Logger;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FoAdvertServiceClient extends AbstractWebServiceClient<ObjectFactory> {
+public class FoAdvertServiceClient extends AbstractSecureWebServiceClient<ObjectFactory> {
     private static final Logger logger = LoggerFactory.getLogger(FoAdvertServiceClient.class);
 
     private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/CareerPortal/SOAP/FoAdvert?api_key=%s";

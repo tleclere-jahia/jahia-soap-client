@@ -1,0 +1,6 @@
+<jaxb:bindings version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+    <jaxb:globalBindings generateElementProperty="false">
+        <jaxb:serializable />
+        <xjc:simple/>
+    </jaxb:globalBindings>
+</jaxb:bindings>

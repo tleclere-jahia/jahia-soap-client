@@ -1,4 +1,4 @@
-package org.foo.modules.jahia.lumesse.ws;
+package org.foo.modules.jahia.lumesse;
 
 public enum Lov {
     JOB_FAMILY("JOB_FAMILY"), JOB_FAMILY_EXTERNE("JOB_FAMILY_EXTERNE"),

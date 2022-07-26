@@ -1,6 +1,6 @@
-package org.foo.modules.jahia.lumesse.actions;
+package org.foo.modules.jahia.actions;
 
-import org.foo.modules.jahia.lumesse.ws.LumesseService;
+import org.foo.modules.jahia.lumesse.LumesseService;
 import org.jahia.bin.Action;
 import org.jahia.bin.ActionResult;
 import org.jahia.services.content.JCRSessionWrapper;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
-@Component(service = Action.class, immediate = true)
+@Component(service = Action.class)
 public class LumesseAction extends Action {
     private static final Logger logger = LoggerFactory.getLogger(LumesseAction.class);
 

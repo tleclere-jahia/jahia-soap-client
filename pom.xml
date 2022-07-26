@@ -52,7 +52,7 @@
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>8.0.3.1</version>
+        <version>8.1.2.1</version>
     </parent>
     <groupId>org.foo.modules</groupId>
     <artifactId>jahia-soap-client</artifactId>
@@ -68,11 +68,6 @@
             <groupId>org.glassfish.metro</groupId>
             <artifactId>webservices-rt</artifactId>
             <version>2.4.4</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.soap</groupId>
-            <artifactId>javax.xml.soap-api</artifactId>
-            <version>1.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.ws</groupId>
@@ -175,7 +170,7 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.14.0</version>
+                <version>0.15.1</version>
                 <executions>
                     <execution>
                         <id>foadvert</id>
@@ -187,7 +182,7 @@
                             <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.foadvert</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>./src/main/resources/wsdl/FoAdvert.xml</url>
+                                    <url>./src/main/wsdl/FoAdvert.xml</url>
                                 </schema>
                             </schemas>
                         </configuration>
@@ -202,7 +197,7 @@
                             <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.lov</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>./src/main/resources/wsdl/LOV.xml</url>
+                                    <url>./src/main/wsdl/LOV.xml</url>
                                 </schema>
                             </schemas>
                         </configuration>
@@ -217,12 +212,65 @@
                             <generatePackage>org.foo.modules.jahia.lumesse.ws.wsdl.searchagent</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>./src/main/resources/wsdl/SearchAgent.xml</url>
+                                    <url>./src/main/wsdl/SearchAgent.xml</url>
                                 </schema>
                             </schemas>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>dolist-contact</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>WSDL</schemaLanguage>
+                            <generatePackage>org.foo.modules.jahia.dolist.ws.contact</generatePackage>
+                            <schemas>
+                                <schema>
+                                    <url>http://api.dolist.net/v2/ContactManagementService.svc?wsdl</url>
+                                </schema>
+                            </schemas>
+                            <bindings>
+                                <binding>
+                                    <url>./src/main/wsdl/customBinding.xml</url>
+                                </binding>
+                            </bindings>
+                            <args>
+                                <arg>-XautoNameResolution</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>dolist-authentication</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>WSDL</schemaLanguage>
+                            <generatePackage>org.foo.modules.jahia.dolist.ws.authentication</generatePackage>
+                            <schemas>
+                                <schema>
+                                    <url>http://api.dolist.net/v2/AuthenticationService.svc?wsdl</url>
+                                </schema>
+                            </schemas>
+                            <bindings>
+                                <binding>
+                                    <url>./src/main/wsdl/customBinding.xml</url>
+                                </binding>
+                            </bindings>
+                            <args>
+                                <arg>-XautoNameResolution</arg>
+                            </args>
+                        </configuration>
+                    </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-runtime</artifactId>
+                        <version>2.3.3</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>

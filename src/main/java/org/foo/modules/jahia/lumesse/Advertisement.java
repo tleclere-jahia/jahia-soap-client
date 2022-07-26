@@ -1,4 +1,4 @@
-package org.foo.modules.jahia.lumesse.ws;
+package org.foo.modules.jahia.lumesse;
 
 import org.foo.modules.jahia.lumesse.ws.wsdl.foadvert.AdvertisementDto;
 import org.foo.modules.jahia.lumesse.ws.wsdl.foadvert.CustomField;

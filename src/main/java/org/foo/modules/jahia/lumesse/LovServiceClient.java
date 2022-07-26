@@ -1,4 +1,4 @@
-package org.foo.modules.jahia.lumesse.ws;
+package org.foo.modules.jahia.lumesse;
 
 import org.foo.modules.jahia.lumesse.ws.wsdl.lov.*;
 import org.slf4j.Logger;
@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LovServiceClient extends AbstractWebServiceClient<ObjectFactory> {
+public class LovServiceClient extends AbstractSecureWebServiceClient<ObjectFactory> {
     private static final Logger logger = LoggerFactory.getLogger(LovServiceClient.class);
 
     private static final String DEFAULT_URI = "https://api3.lumesse-talenthub.com/HRIS/SOAP/LOV?api_key=%s";

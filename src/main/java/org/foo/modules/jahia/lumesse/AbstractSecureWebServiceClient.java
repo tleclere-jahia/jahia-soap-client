@@ -1,15 +1,13 @@
-package org.foo.modules.jahia.lumesse.ws;
+package org.foo.modules.jahia.lumesse;
 
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.client.support.interceptor.ClientInterceptor;
 
-import java.util.Collections;
-
-public abstract class AbstractWebServiceClient<T> extends WebServiceGatewaySupport {
+public abstract class AbstractSecureWebServiceClient<T> extends WebServiceGatewaySupport {
     private final T objectFactory;
 
-    public AbstractWebServiceClient(T objectFactory, SecurityInterceptor securityInterceptor, String defaultUri) {
+    public AbstractSecureWebServiceClient(T objectFactory, SecurityInterceptor securityInterceptor, String defaultUri) {
         super();
         this.objectFactory = objectFactory;
         setDefaultUri(defaultUri);
@@ -18,7 +16,7 @@ public abstract class AbstractWebServiceClient<T> extends WebServiceGatewaySuppo
         marshaller.setContextPath(objectFactory.getClass().getPackage().getName());
         setMarshaller(marshaller);
         setUnmarshaller(marshaller);
-        setInterceptors(Collections.singleton(securityInterceptor).toArray(new ClientInterceptor[0]));
+        setInterceptors(new ClientInterceptor[]{securityInterceptor});
     }
 
     protected T getObjectFactory() {
